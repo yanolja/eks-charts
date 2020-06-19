@@ -46,6 +46,7 @@ spec:
         command:
         - /controller
         args:
+        - --preview=true
         - --enable-leader-election=true
         - --log-level={{ .Values.log.level }}
         - --sidecar-image={{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag }}

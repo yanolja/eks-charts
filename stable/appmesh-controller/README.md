@@ -1,10 +1,12 @@
 # App Mesh Controller
 
-App Mesh controller Helm chart for Kubernetes
+App Mesh controller Helm chart for Kubernetes (Preview)
 
-**Note**: If you wish to use [App Mesh preview](https://docs.aws.amazon.com/app-mesh/latest/userguide/preview.html) features, please refer to our [preview version](https://github.com/aws/eks-charts/blob/preview/stable/appmesh-controller/README.md) instructions.
+**Note:** This is a preview version of appmesh-controller chart that will install preview App Mesh Controller. The [App Mesh Preview Channel](https://docs.aws.amazon.com/app-mesh/latest/userguide/preview.html) is a distinct variant of the App Mesh service provided in the `us-west-2` Region. Preview exposes upcoming features for you to try as they are developed. 
 
 ## Prerequisites
+
+**Note:** Notice that AWS service name is `appmesh-preview` for the preview channel so please setup the IAM policies accordingly
 
 * Kubernetes >= 1.13
 * IAM policies
@@ -15,7 +17,7 @@ App Mesh controller Helm chart for Kubernetes
             {
                 "Effect": "Allow",
                 "Action": [
-                    "appmesh:*",
+                    "appmesh-preview:*",
                     "servicediscovery:CreateService",
                     "servicediscovery:DeleteService",
                     "servicediscovery:GetService",
