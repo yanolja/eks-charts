@@ -56,7 +56,7 @@ helm repo add eks https://aws.github.io/eks-charts
 Install the App Mesh CRDs:
 
 ```sh
-kubectl apply -k github.com/aws/eks-charts/stable/appmesh-controller//crds?ref=master
+kubectl apply -k github.com/aws/eks-charts/stable/appmesh-controller//crds?ref=preview
 ```
 
 Install the App Mesh CRD controller:
@@ -68,10 +68,13 @@ Create namespace
 kubectl create ns appmesh-system
 ```
 
-Deploy appmesh-controller
+Deploy appmesh-controller (preview only supports local git cloned installation)
 ```sh
-helm upgrade -i appmesh-controller eks/appmesh-controller \
-    --namespace appmesh-system
+git clone https://github.com/aws/eks-charts.git
+cd eks-charts && git checkout preview
+
+# Installating from the local chart
+helm upgrade -i appmesh-controller ./stable/appmesh-controller --namespace appmesh-system
 ```
 
 The [configuration](#configuration) section lists the parameters that can be configured during installation.
@@ -202,7 +205,7 @@ eksctl create iamserviceaccount --cluster $CLUSTER_NAME \
 
 Deploy appmesh-controller
 ```sh
-helm upgrade -i appmesh-controller eks/appmesh-controller \
+helm upgrade -i appmesh-controller ./stable/appmesh-controller \
     --namespace appmesh-system \
     --set region=$AWS_REGION \
     --set serviceAccount.create=false \
@@ -237,7 +240,7 @@ eksctl create iamserviceaccount --cluster $CLUSTER_NAME \
 
 Deploy appmesh-controller
 ```sh
-helm upgrade -i appmesh-controller eks/appmesh-controller \
+helm upgrade -i appmesh-controller ./stable/appmesh-controller \
     --namespace appmesh-system \
     --set region=$AWS_REGION \
     --set serviceAccount.create=false \
